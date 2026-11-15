@@ -213,7 +213,7 @@
             animation: none;
         }
         .cover-avatar:hover {
-            transform: scale(1.05) !important;
+            transform: scale(1.05);
         }
 
         .cover-title {
@@ -257,9 +257,11 @@
             mix-blend-mode: screen;
         }
         @keyframes shimmerSweep {
-            0%   { background-position: -100% 0; }
-            40%  { background-position: 200% 0; }
-            100% { background-position: 200% 0; }
+            0%   { background-position: -200% 0; opacity: 0; }
+            10%  { opacity: 1; }
+            40%  { background-position: 200% 0; opacity: 1; }
+            50%  { opacity: 0; }
+            100% { background-position: 200% 0; opacity: 0; }
         }
         .cover-subtitle {
             font-size: clamp(1rem, 2vw, 1.3rem);
@@ -471,13 +473,15 @@
             background-clip: text;
             transition: background 0.5s ease;
         }
-        /* 列表页"关于我"按钮 */
+        /* 列表页"关于我"按钮 - 玻璃风格 */
         .nav-about-btn {
-            background: none;
-            border: 2px solid var(--primary);
+            background: rgba(79, 70, 229, 0.08);
+            -webkit-backdrop-filter: blur(2px) saturate(1.35) brightness(1.08) url(#lgPill);
+            backdrop-filter: blur(2px) saturate(1.35) brightness(1.08) url(#lgPill);
+            border: 1px solid rgba(79, 70, 229, 0.2);
             color: var(--primary);
-            padding: 0.35rem 1rem;
-            border-radius: 20px;
+            padding: 0.4rem 1.1rem;
+            border-radius: 24px;
             cursor: pointer;
             font-size: 0.85rem;
             font-weight: 500;
@@ -486,26 +490,47 @@
             white-space: nowrap;
         }
         .nav-about-btn:hover {
-            background: var(--primary);
-            color: #fff;
+            background: rgba(79, 70, 229, 0.18);
             transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.12);
+        }
+        [data-theme="dark"] .nav-about-btn {
+            background: rgba(129, 140, 248, 0.1);
+            border-color: rgba(129, 140, 248, 0.22);
+            color: var(--primary-light);
+        }
+        [data-theme="dark"] .nav-about-btn:hover {
+            background: rgba(129, 140, 248, 0.22);
+            box-shadow: 0 4px 15px rgba(129, 140, 248, 0.15);
         }
 
+        /* 列表页主题切换 - 玻璃风格 */
         .theme-toggle {
-            background: none;
-            border: 2px solid var(--text-secondary);
-            color: var(--text-secondary);
-            padding: 0.4rem 0.9rem;
-            border-radius: 20px;
+            background: rgba(79, 70, 229, 0.08);
+            -webkit-backdrop-filter: blur(2px) saturate(1.35) brightness(1.08) url(#lgPill);
+            backdrop-filter: blur(2px) saturate(1.35) brightness(1.08) url(#lgPill);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            color: var(--primary);
+            padding: 0.4rem 1.1rem;
+            border-radius: 24px;
             cursor: pointer;
             font-size: 0.9rem;
             transition: all 0.3s ease;
             white-space: nowrap;
         }
         .theme-toggle:hover {
-            background: var(--text);
-            color: var(--bg);
-            border-color: var(--text);
+            background: rgba(79, 70, 229, 0.18);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.12);
+        }
+        [data-theme="dark"] .theme-toggle {
+            background: rgba(129, 140, 248, 0.1);
+            border-color: rgba(129, 140, 248, 0.22);
+            color: var(--primary-light);
+        }
+        [data-theme="dark"] .theme-toggle:hover {
+            background: rgba(129, 140, 248, 0.22);
+            box-shadow: 0 4px 15px rgba(129, 140, 248, 0.15);
         }
 
         /* 搜索框 */
@@ -612,25 +637,37 @@
             transition: color 0.5s ease;
         }
 
-        /* 详情页 */
+        /* 详情页返回按钮 - 玻璃风格 */
         .back-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.3rem;
             margin-bottom: 1.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
+            padding: 0.55rem 1.2rem;
+            background: rgba(79, 70, 229, 0.08);
+            -webkit-backdrop-filter: blur(2px) saturate(1.35) brightness(1.08) url(#lgPill);
+            backdrop-filter: blur(2px) saturate(1.35) brightness(1.08) url(#lgPill);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            color: var(--primary);
+            border-radius: 24px;
             cursor: pointer;
             font-size: 0.95rem;
-            transition: opacity 0.3s ease, transform 0.3s ease,
-                background 0.5s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
         .back-btn:hover {
-            opacity: 0.85;
+            background: rgba(79, 70, 229, 0.18);
             transform: translateX(-3px);
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.12);
+        }
+        [data-theme="dark"] .back-btn {
+            background: rgba(129, 140, 248, 0.1);
+            border-color: rgba(129, 140, 248, 0.22);
+            color: var(--primary-light);
+        }
+        [data-theme="dark"] .back-btn:hover {
+            background: rgba(129, 140, 248, 0.22);
+            box-shadow: 0 4px 15px rgba(129, 140, 248, 0.15);
         }
         .article-content {
             background: var(--card-bg);
@@ -839,14 +876,16 @@
             }
         }
 
-        /* ==================== 返回顶部按钮 ==================== */
+        /* ==================== 返回顶部按钮 - 玻璃风格 ==================== */
         #backToTop {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: var(--primary);
-            color: white;
-            border: none;
+            background: rgba(79, 70, 229, 0.1);
+            -webkit-backdrop-filter: blur(6px) saturate(1.35) brightness(1.08) url(#lgCircle);
+            backdrop-filter: blur(6px) saturate(1.35) brightness(1.08) url(#lgCircle);
+            border: 1px solid rgba(79, 70, 229, 0.25);
+            color: var(--primary);
             border-radius: 50%;
             width: 48px;
             height: 48px;
@@ -855,8 +894,8 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s, transform 0.3s,
-                background 0.5s ease;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+                background 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
             z-index: 998;
             display: flex;
             align-items: center;
@@ -869,7 +908,18 @@
         }
         #backToTop:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.5);
+            background: rgba(79, 70, 229, 0.2);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.25);
+        }
+        [data-theme="dark"] #backToTop {
+            background: rgba(129, 140, 248, 0.12);
+            border-color: rgba(129, 140, 248, 0.25);
+            color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(129, 140, 248, 0.15);
+        }
+        [data-theme="dark"] #backToTop:hover {
+            background: rgba(129, 140, 248, 0.25);
+            box-shadow: 0 6px 20px rgba(129, 140, 248, 0.25);
         }
 
         /* ==================== 通用动画 ==================== */
@@ -1276,6 +1326,7 @@
             }
 
             // ==================== 视图管理 ====================
+
             function showCover() {
                 coverSection.classList.remove("hidden");
                 listSection.classList.remove("hidden");
@@ -1336,11 +1387,6 @@
                     previousView = "cover";
                 }
 
-                // 临时禁用 scroll-snap：section 显隐的瞬间页面高度突变，
-                // 吸附点会立即重算并抢占平滑滚动的位置，导致封面上绝对定位
-                // 的按钮在动画期间相对视口错位。滚动结束后再恢复。
-                document.documentElement.style.scrollSnapType = "none";
-
                 coverSection.classList.add("hidden");
                 listSection.classList.add("hidden");
                 listView.classList.add("hidden");
@@ -1349,21 +1395,11 @@
                 triggerFadeIn(aboutSection);
                 aboutSection.scrollIntoView({ behavior: "smooth" });
 
-                // 等待平滑滚动动画（约 600ms）结束后恢复 snap
-                setTimeout(() => {
-                    document.documentElement.style.scrollSnapType = "";
-                }, 600);
-
                 // 更新文章统计数
                 document.getElementById("statArticles").textContent = articles.length;
             }
 
             function hideAbout() {
-                // 临时禁用 scroll-snap：返回时封面/列表 section 恢复显示，
-                // 页面高度突变会让吸附点重算并抢占滚动位置，导致封面
-                // 左上/右上角的绝对定位按钮视觉错位。滚动结束后再恢复。
-                document.documentElement.style.scrollSnapType = "none";
-
                 aboutSection.classList.add("hidden");
                 coverSection.classList.remove("hidden");
                 listSection.classList.remove("hidden");
@@ -1374,6 +1410,7 @@
                     detailView.classList.remove("hidden");
                     listSection.scrollIntoView({ behavior: "smooth" });
                 } else if (previousView === "cover") {
+                    // 回到封面
                     listView.classList.remove("hidden");
                     detailView.classList.add("hidden");
                     coverSection.scrollIntoView({ behavior: "smooth" });
@@ -1383,11 +1420,6 @@
                     detailView.classList.add("hidden");
                     listSection.scrollIntoView({ behavior: "smooth" });
                 }
-
-                // 等待平滑滚动动画（约 600ms）结束后恢复 snap
-                setTimeout(() => {
-                    document.documentElement.style.scrollSnapType = "";
-                }, 600);
 
                 previousView = null;
             }
@@ -1661,7 +1693,7 @@
                 var MAGNET_R = 80;
                 var MAGNET_K = 0.3;
 
-                document.querySelectorAll('.cover-about-btn,.cover-theme-toggle,.nav-about-btn,.theme-toggle').forEach(function(btn) {
+                document.querySelectorAll('.cover-about-btn,.cover-theme-toggle,.nav-about-btn,.theme-toggle,.back-btn,#backToTop').forEach(function(btn) {
                     btn.addEventListener('mousemove', function(e) {
                         var r = btn.getBoundingClientRect();
                         var cx = r.left + r.width / 2;
